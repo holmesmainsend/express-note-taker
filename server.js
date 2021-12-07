@@ -19,15 +19,15 @@ app.use(express.json());
 
 app.use(express.static('public'));
 
-function createNewNote(body, noteData) {
-    const note = body;
-    noteData.push(note);
-    fs.writeFileSync(
-      path.join(__dirname, './db/db.json'),
-      JSON.stringify({ noteData }, null, 2)
-    );
-    return note;
-  }
+// function createNewNote(body, noteData) {
+//     const note = body;
+//     noteData.push(note);
+//     fs.writeFileSync(
+//       path.join(__dirname, './db/db.json'),
+//       JSON.stringify({ noteData }, null, 2)
+//     );
+//     return note;
+//   }
 
 app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/notes.html'));
@@ -36,8 +36,8 @@ app.get('/notes', (req, res) => {
 app.get('/api/notes', (req, res) => res.json(noteData));
 
 app.post('/api/notes', (req, res) => {
-    const note = createNewNote(req.body, noteData);
-    res.json(note);
+    // const note = createNewNote(req.body, noteData);
+    res.send('POST request made');
 });
 
 app.get('*', (req, res) => {

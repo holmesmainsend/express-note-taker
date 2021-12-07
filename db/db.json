@@ -1,12 +1,6 @@
-{
-  "noteData": [
+[
     {
-      "title": "Test Title",
-      "text": "Test text"
-    },
-    {
-      "title": "Note 2",
-      "text": "this is note 2"
+        "title":"Test Title",
+        "text":"Test text"
     }
-  ]
-}
+]
