@@ -1,15 +1,29 @@
-// TODO: create/test POST route
 // TODO: format Frontend
+// TODO: figure out why server must restart to generate latest POST updates
 // TODO: connect Frontend to Backend
 // TODO: deploy to Heroku
 // TODO: add demo video + README
 
-const express = require('express');
-const path = require('path');
-const noteData = require('./db/db.json');
-const fs = require('fs');
+
+const express = require("express");
+const path = require("path");
+const noteData = require("./db/db.json");
+const fs = require("fs");
 
 const PORT = process.env.PORT || 3001;
+
+function noteAdder(body) {
+    var note = body;
+  fs.readFile("./db/db.json", function (err, data) {
+    var json = JSON.parse(data);
+    json.push(note);
+    fs.writeFile("./db/db.json", JSON.stringify(json, null, 2), function (err) {
+      if (err) throw err;
+      console.log("New note successfully appended!");
+    });
+  });
+  return note;
+}
 
 const app = express();
 
@@ -26,7 +40,8 @@ app.get('/notes', (req, res) => {
 app.get('/api/notes', (req, res) => res.json(noteData));
 
 app.post('/api/notes', (req, res) => {
-    res.json(req.body);
+    const note = noteAdder(req.body);
+    res.json(note);
 });
 
 app.get('*', (req, res) => {
