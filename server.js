@@ -1,9 +1,9 @@
-// TODO: format Frontend
-// TODO: figure out why server must restart to generate latest POST updates
 // TODO: connect Frontend to Backend
 // TODO: deploy to Heroku
 // TODO: add demo video + README
 
+
+// TODO: add fs.readFile to get request directly(?)
 
 const express = require("express");
 const path = require("path");
